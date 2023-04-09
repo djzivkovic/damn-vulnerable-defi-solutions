@@ -6,10 +6,10 @@ import {DamnValuableToken} from "../../src/DamnValuableToken.sol";
 import {TrusterLenderPool} from "../../src/truster/TrusterLenderPool.sol";
 
 contract TrusterLenderPoolTest is Test {
-    TrusterLenderPool public pool;
-    DamnValuableToken public token;
-    address public player;
-    uint256 public constant POOL_INITIAL_BALANCE = 1_000_000e18;
+    TrusterLenderPool private pool;
+    DamnValuableToken private token;
+    address private player;
+    uint256 private constant POOL_INITIAL_BALANCE = 1_000_000e18;
 
     function setUp() public {
         token = new DamnValuableToken();

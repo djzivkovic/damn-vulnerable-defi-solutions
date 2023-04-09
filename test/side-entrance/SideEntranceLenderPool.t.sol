@@ -5,11 +5,11 @@ import "forge-std/Test.sol";
 import {SideEntranceLenderPool} from "../../src/side-entrance/SideEntranceLenderPool.sol";
 
 contract SideEntranceLenderPoolTest is Test {
-    SideEntranceLenderPool public pool;
-    Attacker public attacker;
-    address public player;
-    uint256 public constant POOL_INITIAL_BALANCE = 1000 ether;
-    uint256 public constant PLAYER_INITIAL_BALANCE = 1 ether;
+    SideEntranceLenderPool private pool;
+    Attacker private attacker;
+    address private player;
+    uint256 private constant POOL_INITIAL_BALANCE = 1000 ether;
+    uint256 private constant PLAYER_INITIAL_BALANCE = 1 ether;
 
     function setUp() public {
         pool = new SideEntranceLenderPool();

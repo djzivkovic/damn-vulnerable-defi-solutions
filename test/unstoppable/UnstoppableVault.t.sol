@@ -7,13 +7,13 @@ import {ReceiverUnstoppable} from "../../src/unstoppable/ReceiverUnstoppable.sol
 import {UnstoppableVault, ERC20} from "../../src/unstoppable/UnstoppableVault.sol";
 
 contract UnstoppableVaultTest is Test {
-    ReceiverUnstoppable public receiver;
-    UnstoppableVault public vault;
-    DamnValuableToken public token;
+    ReceiverUnstoppable private receiver;
+    UnstoppableVault private vault;
+    DamnValuableToken private token;
     address poolOwner = makeAddr("poolOwner");
     address player = makeAddr("player");
-    uint256 public constant ATTACKER_INITIAL_BALANCE = 10e18;
-    uint256 public constant POOL_INITIAL_BALANCE = 100_000_000e18;
+    uint256 private constant ATTACKER_INITIAL_BALANCE = 10e18;
+    uint256 private constant POOL_INITIAL_BALANCE = 100_000_000e18;
 
     function setUp() public {
         token = new DamnValuableToken();

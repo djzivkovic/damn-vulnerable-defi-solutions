@@ -6,15 +6,15 @@ import {NaiveReceiverLenderPool} from "../../src/naive-receiver/NaiveReceiverLen
 import {FlashLoanReceiver} from "../../src/naive-receiver/FlashLoanReceiver.sol";
 
 contract NaiveReceiverTest is Test {
-    NaiveReceiverLenderPool public pool;
-    FlashLoanReceiver public receiver;
+    NaiveReceiverLenderPool private pool;
+    FlashLoanReceiver private receiver;
 
     address deployer = makeAddr("deployer");
     address user = makeAddr("user");
     address player = makeAddr("player");
-    uint256 public constant ATTACKER_INITIAL_BALANCE = 10 ether;
-    uint256 public constant POOL_INITIAL_BALANCE = 1000 ether;
-    address public constant ETH = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
+    uint256 private constant ATTACKER_INITIAL_BALANCE = 10 ether;
+    uint256 private constant POOL_INITIAL_BALANCE = 1000 ether;
+    address private constant ETH = 0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE;
 
     function setUp() public {
         pool = new NaiveReceiverLenderPool();
