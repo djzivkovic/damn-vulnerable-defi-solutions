@@ -8,6 +8,8 @@ Please note that this project is currently abandoned. I moved on to other projec
 
 This repository contains my solutions for the first 8 challenges on [Damn Vulnerable DeFi](https://www.damnvulnerabledefi.xyz/). I worked on these challenges as part of my practice in Solidity and to enhance my understanding of decentralized finance (DeFi) concepts.
 
+Foundry was used as the development framework and every challenge solution is a smart contract which can be deployed and used to execute the exploit.
+
 ## Note
 
 These solutions were developed as part of my learning journey in Solidity and DeFi. They may not represent best practices or optimal solutions. Feel free to reach out if you have any questions or suggestions.
